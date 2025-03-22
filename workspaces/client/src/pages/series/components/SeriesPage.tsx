@@ -5,7 +5,6 @@ import invariant from 'tiny-invariant';
 
 import { createStore } from '@wsh-2025/client/src/app/createStore';
 import { RecommendedSection } from '@wsh-2025/client/src/features/recommended/components/RecommendedSection';
-import { useRecommended } from '@wsh-2025/client/src/features/recommended/hooks/useRecommended';
 import { SeriesEpisodeList } from '@wsh-2025/client/src/features/series/components/SeriesEpisodeList';
 import { useSeriesById } from '@wsh-2025/client/src/features/series/hooks/useSeriesById';
 
@@ -24,8 +23,6 @@ export const SeriesPage = () => {
 
   const series = useSeriesById({ seriesId });
   invariant(series);
-
-  const modules = useRecommended({ referenceId: seriesId });
 
   return (
     <>
@@ -55,11 +52,9 @@ export const SeriesPage = () => {
           <SeriesEpisodeList episodes={series.episodes} selectedEpisodeId={null} />
         </div>
 
-        {modules[0] != null ? (
-          <div>
-            <RecommendedSection module={modules[0]} />
-          </div>
-        ) : null}
+        <div>
+          <RecommendedSection count={1} referenceId={seriesId} />
+        </div>
       </div>
     </>
   );
