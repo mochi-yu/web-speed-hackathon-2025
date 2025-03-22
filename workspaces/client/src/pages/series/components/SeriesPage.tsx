@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Ellipsis from 'react-ellipsis-component';
 import { Flipped } from 'react-flip-toolkit';
 import { Params, useParams } from 'react-router';
@@ -53,7 +54,9 @@ export const SeriesPage = () => {
         </div>
 
         <div>
-          <RecommendedSection count={1} referenceId={seriesId} />
+          <Suspense fallback={<p>Loading...</p>}>
+            <RecommendedSection count={1} referenceId={seriesId} />
+          </Suspense>
         </div>
       </div>
     </>

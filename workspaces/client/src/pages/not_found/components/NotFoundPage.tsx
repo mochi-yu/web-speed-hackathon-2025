@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { RecommendedSection } from '@wsh-2025/client/src/features/recommended/components/RecommendedSection';
 
 export const NotFoundPage = () => {
@@ -12,7 +14,9 @@ export const NotFoundPage = () => {
           <img alt="" className="h-auto w-[640px]" src="/public/animations/001.gif" />
         </section>
         <section>
-          <RecommendedSection count={1} referenceId="error" />
+          <Suspense fallback={<p>Loading...</p>}>
+            <RecommendedSection count={1} referenceId="error" />
+          </Suspense>
         </section>
       </div>
     </>

@@ -12,7 +12,7 @@ interface Props {
   episode: StandardSchemaV1.InferOutput<typeof schema.getEpisodeByIdResponse>;
 }
 
-export const SeekThumbnail = ({ episode }: Props) => {
+const SeekThumbnail = ({ episode }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const seekThumbnail = useSeekThumbnail({ episode });
   const pointer = usePointer();
@@ -39,3 +39,5 @@ export const SeekThumbnail = ({ episode }: Props) => {
     />
   );
 };
+
+export default SeekThumbnail;
