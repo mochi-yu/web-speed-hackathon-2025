@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 import { createStore } from '@wsh-2025/client/src/app/createStore';
 import { RecommendedSection } from '@wsh-2025/client/src/features/recommended/components/RecommendedSection';
 
@@ -16,9 +14,7 @@ export const HomePage = () => {
       <title>Home - AremaTV</title>
 
       <div className="w-full py-[48px]">
-        <Suspense fallback={<p>Loading...</p>}>
-          <RecommendedSection isHomePage count={0} referenceId="entrance" />
-        </Suspense>
+        <RecommendedSection isHomePage count={0} referenceId="entrance" />
       </div>
     </>
   );

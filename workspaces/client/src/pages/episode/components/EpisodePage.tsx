@@ -116,9 +116,7 @@ export const EpisodePage = () => {
         </div>
 
         <div className="mt-[24px]">
-          <Suspense fallback={<p>Loading...</p>}>
-            <RecommendedSection count={1} referenceId={episodeId} />
-          </Suspense>
+          <RecommendedSection count={1} referenceId={episodeId} />
         </div>
 
         <div className="mt-[24px]">
