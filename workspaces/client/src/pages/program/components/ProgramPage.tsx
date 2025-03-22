@@ -11,6 +11,7 @@ import { Player } from '@wsh-2025/client/src/features/player/components/Player';
 import { PlayerType } from '@wsh-2025/client/src/features/player/constants/player_type';
 import { useProgramById } from '@wsh-2025/client/src/features/program/hooks/useProgramById';
 import { RecommendedSection } from '@wsh-2025/client/src/features/recommended/components/RecommendedSection';
+import { useRecommended } from '@wsh-2025/client/src/features/recommended/hooks/useRecommended';
 import { SeriesEpisodeList } from '@wsh-2025/client/src/features/series/components/SeriesEpisodeList';
 import { useTimetable } from '@wsh-2025/client/src/features/timetable/hooks/useTimetable';
 import { PlayerController } from '@wsh-2025/client/src/pages/program/components/PlayerController';
@@ -43,6 +44,8 @@ export const ProgramPage = () => {
   const nextProgram = timetable[program.channel.id]?.find((p) => {
     return DateTime.fromISO(program.endAt).equals(DateTime.fromISO(p.startAt));
   });
+
+  const modules = useRecommended({ referenceId: programId });
 
   const playerRef = usePlayerRef();
 
@@ -153,9 +156,11 @@ export const ProgramPage = () => {
           </div>
         </div>
 
-        <div className="mt-[24px]">
-          <RecommendedSection count={1} referenceId={programId} />
-        </div>
+        {modules[0] != null ? (
+          <div className="mt-[24px]">
+            <RecommendedSection module={modules[0]} />
+          </div>
+        ) : null}
 
         <div className="mt-[24px]">
           <h2 className="mb-[12px] text-[22px] font-bold text-[#ffffff]">関連するエピソード</h2>

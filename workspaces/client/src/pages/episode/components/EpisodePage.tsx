@@ -12,6 +12,7 @@ import { AspectRatio } from '@wsh-2025/client/src/features/layout/components/Asp
 import { Player } from '@wsh-2025/client/src/features/player/components/Player';
 import { PlayerType } from '@wsh-2025/client/src/features/player/constants/player_type';
 import { RecommendedSection } from '@wsh-2025/client/src/features/recommended/components/RecommendedSection';
+import { useRecommended } from '@wsh-2025/client/src/features/recommended/hooks/useRecommended';
 import { SeriesEpisodeList } from '@wsh-2025/client/src/features/series/components/SeriesEpisodeList';
 import { PlayerController } from '@wsh-2025/client/src/pages/episode/components/PlayerController';
 import { usePlayerRef } from '@wsh-2025/client/src/pages/episode/hooks/usePlayerRef';
@@ -34,6 +35,8 @@ export const EpisodePage = () => {
 
   const episode = useEpisodeById({ episodeId });
   invariant(episode);
+
+  const modules = useRecommended({ referenceId: episodeId });
 
   const playerRef = usePlayerRef();
 
@@ -115,9 +118,11 @@ export const EpisodePage = () => {
           </div>
         </div>
 
-        <div className="mt-[24px]">
-          <RecommendedSection count={1} referenceId={episodeId} />
-        </div>
+        {modules[0] != null ? (
+          <div className="mt-[24px]">
+            <RecommendedSection module={modules[0]} />
+          </div>
+        ) : null}
 
         <div className="mt-[24px]">
           <h2 className="mb-[12px] text-[22px] font-bold text-[#ffffff]">エピソード</h2>
