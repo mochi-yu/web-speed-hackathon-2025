@@ -72,7 +72,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
     } satisfies FastifyZodOpenApiSchema,
     handler: async function initialize(_req, reply) {
       await initializeDatabase();
-      reply.code(200).send({});
+      return reply.code(200).send({});
     },
   });
 
@@ -107,7 +107,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           return void 0;
         },
       });
-      reply.code(200).send(channels);
+      return reply.code(200).send(channels);
     },
   });
 
@@ -138,7 +138,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       if (channel == null) {
         return reply.code(404).send();
       }
-      reply.code(200).send(channel);
+      return reply.code(200).send(channel);
     },
   });
 
@@ -184,7 +184,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           },
         },
       });
-      reply.code(200).send(episodes);
+      return reply.code(200).send(episodes);
     },
   });
 
@@ -226,7 +226,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       if (episode == null) {
         return reply.code(404).send();
       }
-      reply.code(200).send(episode);
+      return reply.code(200).send(episode);
     },
   });
 
@@ -271,7 +271,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           },
         },
       });
-      reply.code(200).send(series);
+      return reply.code(200).send(series);
     },
   });
 
@@ -312,7 +312,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       if (series == null) {
         return reply.code(404).send();
       }
-      reply.code(200).send(series);
+      return reply.code(200).send(series);
     },
   });
 
@@ -348,7 +348,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           );
         },
       });
-      reply.code(200).send(programs);
+      return reply.code(200).send(programs);
     },
   });
 
@@ -399,7 +399,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           },
         },
       });
-      reply.code(200).send(programs);
+      return reply.code(200).send(programs);
     },
   });
 
@@ -446,7 +446,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       if (program == null) {
         return reply.code(404).send();
       }
-      reply.code(200).send(program);
+      return reply.code(200).send(program);
     },
   });
 
@@ -508,7 +508,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
           },
         },
       });
-      reply.code(200).send(modules);
+      return reply.code(200).send(modules);
     },
   });
 
@@ -543,7 +543,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       const ret = schema.signInResponse.parse({ id: user.id, email: user.email });
 
       req.session.set('id', ret.id.toString());
-      reply.code(200).send(user);
+      return reply.code(200).send(user);
     },
   });
 
@@ -591,7 +591,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       const ret = schema.signUpResponse.parse({ id: user.id, email: user.email });
 
       req.session.set('id', ret.id.toString());
-      reply.code(200).send(ret);
+      return reply.code(200).send(ret);
     },
   });
 
@@ -626,7 +626,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
       if (!user) {
         return reply.code(401).send();
       }
-      reply.code(200).send(user);
+      return reply.code(200).send(user);
     },
   });
 
@@ -642,7 +642,7 @@ export async function registerApi(app: FastifyInstance): Promise<void> {
         return reply.code(401).send();
       }
       req.session.set('id', void 0);
-      reply.code(200).send();
+      return reply.code(200).send();
     },
   });
 

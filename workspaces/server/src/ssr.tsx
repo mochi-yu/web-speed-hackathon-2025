@@ -35,7 +35,7 @@ export function registerSsr(app: FastifyInstance): void {
   });
 
   app.get('/favicon.ico', (_, reply) => {
-    reply.status(404).send();
+    return reply.status(404).send();
   });
 
   app.get('/*', async (req, reply) => {
@@ -66,12 +66,13 @@ export function registerSsr(app: FastifyInstance): void {
       getFilePaths('public/logos', rootDir),
     ].flat();
 
-    reply.type('text/html').send(/* html */ `
+    return reply.type('text/html').send(/* html */ `
       <!DOCTYPE html>
       <html lang="ja">
         <head>
           <meta charSet="UTF-8" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+          <meta name="robots" content="noindex" />
           <script src="/public/main.js"></script>
           ${imagePaths.map((imagePath) => `<link as="image" href="${imagePath}" rel="preload" />`).join('\n')}
         </head>

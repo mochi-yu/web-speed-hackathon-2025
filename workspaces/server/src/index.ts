@@ -14,7 +14,10 @@ async function main() {
   const app = fastify();
 
   app.addHook('onSend', async (_req, reply) => {
-    reply.header('cache-control', 'no-store');
+    reply.headers({
+      'cache-control': 'no-store',
+      'x-robots-tag': 'noindex',
+    });
   });
   app.register(cors, {
     origin: true,

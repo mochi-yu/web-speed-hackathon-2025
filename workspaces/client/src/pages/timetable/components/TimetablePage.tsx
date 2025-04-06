@@ -30,7 +30,7 @@ export const TimetablePage = () => {
     <>
       <title>番組表 - AremaTV</title>
 
-      <div className="relative grid size-full overflow-x-auto overflow-y-auto [grid-template-areas:'channel_channel''hours_content']">
+      <div className="relative grid size-full overflow-x-auto overflow-y-auto [grid-template-areas:'channel_channel''hours_content'] [grid-template-columns:min-content_1fr] [grid-template-rows:min-content_1fr]">
         <div className="sticky top-0 z-20 flex w-fit flex-row bg-[#000000] pl-[24px] [grid-area:channel]">
           {channelIds.map((channelId) => (
             <div key={channelId} className="shrink-0 grow-0">
