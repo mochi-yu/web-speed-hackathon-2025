@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "wireit",
+    "build:analyze": "wireit",
     "format": "wireit",
     "format:eslint": "wireit",
     "format:prettier": "wireit"
@@ -54,6 +55,7 @@
     "@ffmpeg/util": "0.12.2",
     "@iconify/json": "2.2.317",
     "@iconify/types": "2.0.0",
+    "@types/webpack-bundle-analyzer": "4.7.0", 
     "@types/lodash": "4.17.16",
     "@types/luxon": "3.4.2",
     "@types/m3u8-parser": "7.2.0",
@@ -81,6 +83,18 @@
   "wireit": {
     "build": {
       "command": "webpack",
+      "files": [
+        "../../pnpm-lock.yaml",
+        "../schema/src/**/*",
+        "./src/**/*",
+        "./webpack.config.mjs"
+      ],
+      "output": [
+        "./dist/**/*"
+      ]
+    },
+    "build:analyze": {
+      "command": "ANALYZE=1 webpack",
       "files": [
         "../../pnpm-lock.yaml",
         "../schema/src/**/*",

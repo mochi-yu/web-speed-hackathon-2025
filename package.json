@@ -3,6 +3,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "build": "wireit",
+    "build:analyze": "wireit",
     "heroku-build": "wireit",
     "heroku-cleanup": "wireit",
     "heroku-start": "wireit",
@@ -15,9 +16,9 @@
   "devDependencies": {
     "@wsh-2025/configs": "workspace:*"
   },
-  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387",
+  "packageManager": "pnpm@10.9.0+sha256.ea53ab747ac8b7921de63b42eab1adf021e1fe6ded05f62f00885cc33a46118d",
   "engines": {
-    "node": "22.14.0"
+    "node": "22.15.0"
   },
   "pnpm": {
     "overrides": {
@@ -37,6 +38,11 @@
     "build": {
       "dependencies": [
         "./workspaces/client:build"
+      ]
+    },
+    "build:analyze": {
+      "dependencies": [
+        "./workspaces/client:build:analyze"
       ]
     },
     "heroku-build": {
